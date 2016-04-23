@@ -14,3 +14,5 @@ UI/obj/*
 UI/bin/*
 
 *.map
+
+UI/node_modules/*
