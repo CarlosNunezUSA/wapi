@@ -1,0 +1,16 @@
+
+Wapi/Wapi.vbproj.user
+
+*.cache
+
+Wapi/obj/*
+
+Wapi/bin/*
+
+packages/*
+
+UI/obj/*
+
+UI/bin/*
+
+*.map

@@ -1,0 +1,7 @@
+{
+"proxy" : "http://11.2.6.39:8080/",
+"rejectUnauthorized" : false,
+"insecure" : true,
+"strict-ssl" : false
+}
+
