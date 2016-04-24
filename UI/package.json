@@ -1,8 +1,8 @@
 {
-    "name": "product-management",
+    "name": "wapi",
     "version": "1.0.0",
-    "author": "Deborah Kurata",
-    "description": "Package for the Acme Product Management sample application",
+    "author": "",
+    "description": "",
     "scripts": {
         "start": "concurrent \"npm run tsc:w\" \"npm run lite\" ",
         "tsc": "tsc",
