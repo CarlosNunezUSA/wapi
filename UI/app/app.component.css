@@ -129,6 +129,7 @@ html, body {
   -webkit-align-items: stretch;
       -ms-flex-align: stretch;
           align-items: stretch;
+          margin: 0;
 }
 /* TODO: Find a proper solution to have the graphs
  * not float around outside their container in IE10/11.

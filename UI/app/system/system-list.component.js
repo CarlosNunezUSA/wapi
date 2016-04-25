@@ -1,4 +1,4 @@
-System.register(['angular2/core', './dashboard/dashboard.component'], function(exports_1, context_1) {
+System.register(['angular2/core'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,32 +10,41 @@ System.register(['angular2/core', './dashboard/dashboard.component'], function(e
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, dashboard_component_1;
-    var AppComponent;
+    var core_1;
+    var SystemListComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
-            },
-            function (dashboard_component_1_1) {
-                dashboard_component_1 = dashboard_component_1_1;
             }],
         execute: function() {
-            AppComponent = (function () {
-                function AppComponent() {
+            SystemListComponent = (function () {
+                function SystemListComponent() {
+                    this.componentTitle = 'SYSTEMS';
+                    this.systems = [
+                        {
+                            "id": 1,
+                            "name": "System 1",
+                            "isActive": true
+                        },
+                        {
+                            "id": 2,
+                            "name": "System 2",
+                            "isActive": true
+                        }
+                    ];
                 }
-                AppComponent = __decorate([
+                SystemListComponent = __decorate([
                     core_1.Component({
-                        selector: 'cc-app',
-                        template: '<div><cc-dashboard>Loading...</cc-dashboard></div>',
-                        directives: [dashboard_component_1.DashboardComponent]
+                        selector: 'cc-system-list',
+                        templateUrl: 'app/system/system-list.template.html'
                     }), 
                     __metadata('design:paramtypes', [])
-                ], AppComponent);
-                return AppComponent;
+                ], SystemListComponent);
+                return SystemListComponent;
             }());
-            exports_1("AppComponent", AppComponent);
+            exports_1("SystemListComponent", SystemListComponent);
         }
     }
 });
-//# sourceMappingURL=app.component.js.map
+//# sourceMappingURL=system-list.component.js.map

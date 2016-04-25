@@ -3,8 +3,8 @@
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 @Component({
-    selector: 'cs-app',
-    template: '<div><cs-dashboard>Loading...</cs-dashboard></div>',
+    selector: 'cc-app',
+    template: '<div><cc-dashboard>Loading...</cc-dashboard></div>',
     directives: [DashboardComponent]
 })
 export class AppComponent {

@@ -2,9 +2,12 @@
 
 import { IDashboard } from './dashboard'
 
+import { SystemListComponent } from '../system/system-list.component'
+ 
 @Component({
-    selector: 'cs-dashboard',
-    templateUrl: 'app/dashboard/dashboard.template.html'
+    selector: 'cc-dashboard',
+    templateUrl: 'app/dashboard/dashboard.template.html',
+    directives: [SystemListComponent]
 })
 export class DashboardComponent {
     pageTitle: string = 'Dashboard';
