@@ -16,3 +16,22 @@ UI/bin/*
 *.map
 
 UI/node_modules/*
+
+*.xml
+
+**/**/obj/*
+
+**/**/bin/*
+
+Dal/obj/*
+
+Dal/bin/*
+
+Db/obj/*
+
+Db/bin/*
+
+Wapi/obj/*
+
+Wapi/bin/*
+*.log
