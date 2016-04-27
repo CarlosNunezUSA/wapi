@@ -86,7 +86,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DbSettings.vb" />
+    <Compile Include="Connections.vb" />
     <Compile Include="HermesInstaller.Designer.vb">
       <DependentUpon>HermesInstaller.vb</DependentUpon>
     </Compile>
@@ -95,6 +95,7 @@
     </Compile>
     <Compile Include="Model\IJob.vb" />
     <Compile Include="Model\Job.vb" />
+    <Compile Include="Model\JobResult.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>

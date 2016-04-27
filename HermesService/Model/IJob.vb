@@ -1,7 +1,7 @@
 ﻿Namespace Model
 
     Public Interface IJob
-        Sub Run(param As Object)
+        Function Run(param As Object) As JobResult
     End Interface
 
 End Namespace

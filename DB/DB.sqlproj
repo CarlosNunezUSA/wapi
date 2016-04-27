@@ -8,7 +8,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{33b86f7b-d1cf-4853-b76c-b4ec7dca69e5}</ProjectGuid>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql100DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
@@ -27,6 +27,11 @@
     <GenerateSqlClrSymbols>False</GenerateSqlClrSymbols>
     <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
     <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+    <IncludeSchemaNameInFileName>False</IncludeSchemaNameInFileName>
+    <AutoShrink>True</AutoShrink>
+    <Recovery>SIMPLE</Recovery>
+    <EnableFullTextSearch>False</EnableFullTextSearch>
+    <Trustworthy>True</Trustworthy>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -67,6 +72,7 @@
     <Folder Include="Compare" />
     <Folder Include="Scripts" />
     <Folder Include="Snapshots" />
+    <Folder Include="Publish Profiles\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\System.sql" />
@@ -76,5 +82,8 @@
   <ItemGroup>
     <None Include="Compare\Work-DbSchema.scmp" />
     <None Include="Snapshots\DB_2016_04_26_16-51-44.dacpac" />
+    <None Include="DB.publish.xml" />
+    <None Include="Publish Profiles\DB.VM.publish.xml" />
+    <None Include="Compare\VM-DbSchema.scmp" />
   </ItemGroup>
 </Project>
