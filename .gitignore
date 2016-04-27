@@ -34,4 +34,7 @@ Db/bin/*
 Wapi/obj/*
 
 Wapi/bin/*
+
 *.log
+
+.typingsrc

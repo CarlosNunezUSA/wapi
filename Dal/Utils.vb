@@ -12,10 +12,11 @@
 ' ' |============================================================================================================
 ' ' |
 Imports Newtonsoft.Json
+Imports System.ComponentModel
 
 Public Module Utils
 
-    <System.Runtime.CompilerServices.Extension>
+    <Runtime.CompilerServices.Extension>
     Public Function ValidRow(Of T)(row As DataRow, columnName As String, Optional [default] As T = Nothing) As T
         Dim index As Integer = row.Table.Columns.IndexOf(columnName)
         If index < 0 OrElse TypeOf (row(index)) Is DBNull Then

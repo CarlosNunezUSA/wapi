@@ -4,7 +4,7 @@
 Public Class Hermes
 
 
-    Private Const TIMER_INTERVAL As Integer = 60000
+    Private Const RUN_INTERVAL As Integer = 60000
     Private _maintimer As System.Timers.Timer
 
 
@@ -14,7 +14,7 @@ Public Class Hermes
     Protected Overrides Sub OnStart(ByVal args() As String)
 
         Try
-            _maintimer = New System.Timers.Timer(TIMER_INTERVAL)
+            _maintimer = New System.Timers.Timer(RUN_INTERVAL)
             AddHandler _maintimer.Elapsed, AddressOf Me.OnTimerTickEvent
             _maintimer.Enabled = True
             _maintimer.Start()
@@ -28,15 +28,19 @@ Public Class Hermes
     '
     ' Clock tick event
     '
-    Private Sub OnTimerTickEvent(source As Object, e As System.Timers.ElapsedEventArgs)
+    Public Sub OnTimerTickEvent(source As Object, e As System.Timers.ElapsedEventArgs)
 
         Try
 
-            Dim Jobs As List(Of Model.Job) = Job.GetAll()
+            Dim jobs As List(Of Model.Job) = Job.GetAll()
 
-            Parallel.ForEach(Of Job)(Jobs, Sub(j)
-                                               j.Run(j.RunParameters)
-                                           End Sub)
+            If jobs.Count > 0 Then
+                Parallel.ForEach(Of Job)(jobs, Sub(j)
+                                                   If j IsNot Nothing AndAlso j.IsEnabled Then
+                                                       Dim result As JobResult = j.Run(j.RunParameters)
+                                                   End If
+                                               End Sub)
+            End If
 
         Catch ex As Exception
             Throw
