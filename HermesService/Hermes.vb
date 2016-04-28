@@ -30,6 +30,8 @@ Public Class Hermes
     '
     Public Sub OnTimerTickEvent(source As Object, e As System.Timers.ElapsedEventArgs)
 
+        Dim timenow As DateTime = DateTime.Now
+
         Try
 
             Dim jobs As List(Of Model.Job) = Job.GetAll()
@@ -37,7 +39,7 @@ Public Class Hermes
             If jobs.Count > 0 Then
                 Parallel.ForEach(Of Job)(jobs, Sub(j)
                                                    If j IsNot Nothing AndAlso j.IsEnabled Then
-                                                       Dim result As JobResult = j.Run(j.RunParameters)
+                                                       Dim result As JobResult = j.Run(j.RunParameters, timenow)
                                                    End If
                                                End Sub)
             End If

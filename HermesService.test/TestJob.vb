@@ -4,28 +4,67 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
 <TestClass()> Public Class TestJob
 
-    <TestMethod()> Public Sub TestJobRun()
+    <TestMethod()> Public Sub TestJobRunOnce()
 
         Dim result As JobResult
+
+        Dim timenow As DateTime = DateTime.Now
 
         Dim params As Object = Nothing
         Dim j As New Job
         j.ID = 1
-        j.RunOnce = DateTime.Now
-        j.IsEnabled = False
-        result = j.Run(params)
-
-        Assert.IsTrue(result Is Nothing, "Result should return nothing when is not enabled")
-
+        j.RunOnce = timenow
         j.IsEnabled = True
 
-        result = j.Run(params)
 
-        Assert.IsTrue(result.CodeExecuted = True, "Code should have executed")
+        result = j.Run(params, timenow)
 
+        Assert.IsTrue(result.CodeExecuted = True, "Result should return that the Code was executed")
 
+    End Sub
 
+    <TestMethod()> Public Sub TestJobRunAtTimeAndDay()
 
+        Dim result As JobResult
+
+        Dim timenow As DateTime = New DateTime(2016, 4, 10, 14, 20, 4)
+
+        Dim params As Object = Nothing
+        Dim j As New Job
+        j.ID = 1
+        j.RunOnce = Nothing
+        j.IsEnabled = True
+        j.Monday = True
+        j.Tuesday = True
+        j.Wednesday = True
+        j.Thursday = True
+        j.Friday = True
+        j.Saturday = True
+        j.Sunday = True
+
+        j.RunTime = "14:20"
+
+        result = j.Run(params, timenow)
+
+        Assert.IsTrue(result.CodeExecuted = True, "Result should return that the Code was executed")
+
+    End Sub
+
+    <TestMethod()> Public Sub TestJobRunForced()
+
+        Dim result As JobResult
+
+        Dim timenow As DateTime = New DateTime(2016, 4, 10, 14, 20, 4)
+
+        Dim params As Object = Nothing
+        Dim j As New Job
+        j.ID = 1
+        j.RunOnce = Nothing
+        j.IsEnabled = False
+
+        result = j.Run(params, timenow, True)
+
+        Assert.IsTrue(result.CodeExecuted = True, "Result should return that the Code was executed")
 
     End Sub
 

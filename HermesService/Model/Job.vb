@@ -64,27 +64,28 @@ Namespace Model
 
         End Function
 
-        Public Function Run(params As Object) As JobResult Implements IJob.Run
-
-            If Not IsEnabled Then
-                Return Nothing
-            End If
+        Public Function Run(params As Object, timenow As DateTime, Optional force As Boolean = False) As JobResult Implements IJob.Run
 
             Dim result As New JobResult
             result.StartTime = DateTime.Now
 
             Try
-                Dim timenow As DateTime = DateTime.Now
 
-                If RunOnce = timenow Then
+                If (Not force) AndAlso (Not IsEnabled) Then
+                    result.CodeExecuted = False
+                    Return Nothing
+                End If
+
+                If force OrElse String.Format("{0:MM/dd/yy-hh:mm-tt}", RunOnce) = String.Format("{0:MM/dd/yy-hh:mm-tt}", timenow) Then
+
                     ' run this right now
-                    Throw New NotImplementedException
+                    RunTheJob(params, result)
+
                 ElseIf Not String.IsNullOrWhiteSpace(RunTime) Then
-                    ' check the time
-                    Dim aTime As String() = RunTime.Split(":")
-                    Dim hour As Integer = Integer.Parse(aTime(0))
-                    Dim minute As String = Integer.Parse(aTime(1))
-                    If hour = timenow.Hour AndAlso minute = timenow.Minute Then
+
+                    ' check if time to run (24 hours format - no date comparison needed)
+                    If RunTime = String.Format("{0:HH:mm}", timenow) Then
+
                         Dim runnow As Boolean
                         Select Case timenow.DayOfWeek
                             Case DayOfWeek.Monday
@@ -105,14 +106,7 @@ Namespace Model
                                 runnow = False
                         End Select
                         If runnow Then
-                            Try
-                                result.CodeExecuted = True
-                                RunTheJob(params)
-                                result.CodeFailed = False
-                            Catch ex As Exception
-                                result.Error = ex
-                                result.CodeFailed = True
-                            End Try
+                            RunTheJob(params, result)
                         End If
                     End If
 
@@ -128,8 +122,17 @@ Namespace Model
 
         End Function
 
-        Private Sub RunTheJob(params As Object)
-            Throw New NotImplementedException
+        Private Sub RunTheJob(params As Object, ByRef result As JobResult)
+
+            Try
+                result.CodeExecuted = True
+                'todo: execute code here ***********************8
+                result.CodeFailed = False
+            Catch ex As Exception
+                result.Error = ex
+                result.CodeFailed = True
+            End Try
+
         End Sub
 
 
