@@ -10,14 +10,12 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
         Dim timenow As DateTime = DateTime.Now
 
-        Dim params As Object = Nothing
         Dim j As New Job
         j.ID = 1
         j.RunOnce = timenow
         j.IsEnabled = True
 
-
-        result = j.Run(params, timenow)
+        result = j.Run(timenow)
 
         Assert.IsTrue(result.CodeExecuted = True, "Result should return that the Code was executed")
 
@@ -29,7 +27,6 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
         Dim timenow As DateTime = New DateTime(2016, 4, 10, 14, 20, 4)
 
-        Dim params As Object = Nothing
         Dim j As New Job
         j.ID = 1
         j.RunOnce = Nothing
@@ -44,7 +41,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
         j.RunTime = "14:20"
 
-        result = j.Run(params, timenow)
+        result = j.Run(timenow)
 
         Assert.IsTrue(result.CodeExecuted = True, "Result should return that the Code was executed")
 
@@ -56,16 +53,35 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
         Dim timenow As DateTime = New DateTime(2016, 4, 10, 14, 20, 4)
 
-        Dim params As Object = Nothing
         Dim j As New Job
         j.ID = 1
         j.RunOnce = Nothing
         j.IsEnabled = False
 
-        result = j.Run(params, timenow, True)
+        result = j.Run(timenow, True)
 
         Assert.IsTrue(result.CodeExecuted = True, "Result should return that the Code was executed")
 
     End Sub
+
+    <Ignore>
+    <TestMethod()> Public Sub TestJobGetAll()
+
+        Dim j = Job.GetAll()
+        Assert.IsTrue(j IsNot Nothing, "Result should return that the Code was executed")
+
+    End Sub
+
+    <TestMethod()> Public Sub TestRunTheJob()
+
+        Dim jobs As List(Of Model.Job) = Job.GetAll()
+        Dim j As Job = jobs(1)
+        Dim timenow As DateTime = DateTime.Now
+        j.Run(timenow, True)
+
+        Assert.IsTrue(j IsNot Nothing, "Result should return that the Code was executed")
+
+    End Sub
+
 
 End Class

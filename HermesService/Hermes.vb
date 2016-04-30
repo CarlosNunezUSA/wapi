@@ -39,7 +39,7 @@ Public Class Hermes
             If jobs.Count > 0 Then
                 Parallel.ForEach(Of Job)(jobs, Sub(j)
                                                    If j IsNot Nothing AndAlso j.IsEnabled Then
-                                                       Dim result As JobResult = j.Run(j.RunParameters, timenow)
+                                                       Dim result As JobResult = j.Run(timenow)
                                                    End If
                                                End Sub)
             End If
