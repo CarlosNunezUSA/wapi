@@ -1,9 +1,9 @@
-﻿Imports DAL
-Imports DAL.Utils
+﻿
 Imports System.ComponentModel
 Imports System.Configuration
 Imports System.Globalization
 Imports System.IO
+Imports HermesFramework.Data
 
 Namespace Model
 
@@ -29,21 +29,21 @@ Namespace Model
         Public Shared Function RowToObject(r As DataRow) As Job
 
             Dim result As New Job
-            result.ID = r.ValidRow(Of Integer)("ID", -1)
-            result.SystemID = r.ValidRow(Of Integer)("SystemID", -1)
-            result.RunOnce = r.ValidRow(Of Nullable(Of DateTime))("RunOnce", Nothing)
-            result.RunTime = r.ValidRow(Of String)("RunTime")
-            result.Monday = r.ValidRow(Of Boolean)("Monday", False)
-            result.Tuesday = r.ValidRow(Of Boolean)("Tuesday", False)
-            result.Wednesday = r.ValidRow(Of Boolean)("Wednesday", False)
-            result.Thursday = r.ValidRow(Of Boolean)("Thursday", False)
-            result.Friday = r.ValidRow(Of Boolean)("Friday", False)
-            result.Saturday = r.ValidRow(Of Boolean)("Saturday", False)
-            result.Sunday = r.ValidRow(Of Boolean)("Sunday", False)
-            result.RunBatch = r.ValidRow(Of String)("RunBatch")
-            result.RunDll = r.ValidRow(Of String)("RunDll")
-            result.IsEnabled = r.ValidRow(Of Boolean)("IsEnabled", False)
-            result.RunParameters = Nothing 'r.ValidRow(Of Byte())("RunParameters", Nothing) ' As Byte()
+            result.ID = r.Parse(Of Integer)("ID", -1)
+            result.SystemID = r.Parse(Of Integer)("SystemID", -1)
+            result.RunOnce = r.Parse(Of Nullable(Of DateTime))("RunOnce", Nothing)
+            result.RunTime = r.Parse(Of String)("RunTime")
+            result.Monday = r.Parse(Of Boolean)("Monday", False)
+            result.Tuesday = r.Parse(Of Boolean)("Tuesday", False)
+            result.Wednesday = r.Parse(Of Boolean)("Wednesday", False)
+            result.Thursday = r.Parse(Of Boolean)("Thursday", False)
+            result.Friday = r.Parse(Of Boolean)("Friday", False)
+            result.Saturday = r.Parse(Of Boolean)("Saturday", False)
+            result.Sunday = r.Parse(Of Boolean)("Sunday", False)
+            result.RunBatch = r.Parse(Of String)("RunBatch")
+            result.RunDll = r.Parse(Of String)("RunDll")
+            result.IsEnabled = r.Parse(Of Boolean)("IsEnabled", False)
+            result.RunParameters = Nothing 'r.Parse(Of Byte())("RunParameters", Nothing) ' As Byte()
             Return result
 
         End Function
@@ -136,7 +136,6 @@ Namespace Model
             Try
                 result.CodeExecuted = True
 
-                'todo: execute code here *****************
                 If Not String.IsNullOrWhiteSpace(RunBatch) Then
 
                     Dim jobFile As String = Path.Combine(ConfigurationManager.AppSettings("jobsfolder"), RunBatch)
@@ -147,19 +146,12 @@ Namespace Model
                         proc.StartInfo.FileName = RunBatch
                         proc.StartInfo.CreateNoWindow = True
                         proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden
+                        proc.StartInfo.Arguments = RunParameters
                         proc.Start()
                         proc.WaitForExit()
 
                         Return True
 
-                        'Dim psi As New ProcessStartInfo(jobFile)
-                        'psi.RedirectStandardError = True
-                        'psi.RedirectStandardOutput = True
-                        'psi.CreateNoWindow = False
-                        'psi.WindowStyle = ProcessWindowStyle.Hidden
-                        'psi.UseShellExecute = False
-                        'psi.WorkingDirectory = ConfigurationManager.AppSettings("jobsfolder")
-                        'Dim process As Process = Process.Start(psi)
                     Else
                         Throw New Exception("The specified BATCH file doesn't exist!")
                     End If
@@ -249,6 +241,9 @@ Namespace Model
                         j.Sunday = Boolean.Parse(value)
                     End If
                     If InStr(ln, "RunParameters") Then
+                        value = value.Replace("@@-Date", String.Format("{1}{0}{1}", DateTime.Now, Chr(34)))
+                        value = value.Replace("@@-File", String.Format("{1}{0}{1}", f, Chr(34)))
+                        value = value.Replace("@@-User", System.Security.Principal.WindowsIdentity.GetCurrent().Name)
                         j.RunParameters = value
                     End If
 

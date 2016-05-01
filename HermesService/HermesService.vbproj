@@ -154,9 +154,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Dal\DAL.vbproj">
-      <Project>{f1ec538e-32f7-42e8-afec-5183e37d16f7}</Project>
-      <Name>DAL</Name>
+    <ProjectReference Include="\\vmware-host\Shared Folders\Desktop\Code\wapi\HermesFramework\HermesFramework.vbproj">
+      <Project>{0e7e3890-7ebb-4245-9c24-d566f4da658e}</Project>
+      <Name>HermesFramework</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

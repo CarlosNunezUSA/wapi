@@ -9,11 +9,11 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "UI", "UI\UI.vbproj", "{2E49
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "HermesService", "HermesService\HermesService.vbproj", "{943BA4E8-C605-454B-AF40-F56FCA2D904F}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DAL", "Dal\DAL.vbproj", "{F1EC538E-32F7-42E8-AFEC-5183E37D16F7}"
-EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DB", "DB\DB.sqlproj", "{33B86F7B-D1CF-4853-B76C-B4EC7DCA69E5}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "HermesService.test", "HermesService.test\HermesService.test.vbproj", "{FD2166C8-33B4-4FC9-AC48-55ABEB5864ED}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "HermesFramework", "\\vmware-host\Shared Folders\Desktop\Code\wapi\HermesFramework\HermesFramework.vbproj", "{0E7E3890-7EBB-4245-9C24-D566F4DA658E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,10 +33,6 @@ Global
 		{943BA4E8-C605-454B-AF40-F56FCA2D904F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{943BA4E8-C605-454B-AF40-F56FCA2D904F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{943BA4E8-C605-454B-AF40-F56FCA2D904F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F1EC538E-32F7-42E8-AFEC-5183E37D16F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F1EC538E-32F7-42E8-AFEC-5183E37D16F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F1EC538E-32F7-42E8-AFEC-5183E37D16F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F1EC538E-32F7-42E8-AFEC-5183E37D16F7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{33B86F7B-D1CF-4853-B76C-B4EC7DCA69E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{33B86F7B-D1CF-4853-B76C-B4EC7DCA69E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33B86F7B-D1CF-4853-B76C-B4EC7DCA69E5}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
@@ -47,6 +43,10 @@ Global
 		{FD2166C8-33B4-4FC9-AC48-55ABEB5864ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD2166C8-33B4-4FC9-AC48-55ABEB5864ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD2166C8-33B4-4FC9-AC48-55ABEB5864ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E7E3890-7EBB-4245-9C24-D566F4DA658E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E7E3890-7EBB-4245-9C24-D566F4DA658E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E7E3890-7EBB-4245-9C24-D566F4DA658E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E7E3890-7EBB-4245-9C24-D566F4DA658E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
