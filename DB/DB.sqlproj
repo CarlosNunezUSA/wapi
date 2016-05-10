@@ -73,11 +73,13 @@
     <Folder Include="Scripts" />
     <Folder Include="Snapshots" />
     <Folder Include="Publish Profiles\" />
+    <Folder Include="dbo\Stored Procedures\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\System.sql" />
     <Build Include="dbo\Tables\Status.sql" />
     <Build Include="dbo\Tables\Job.sql" />
+    <Build Include="dbo\Stored Procedures\p_GET_ActiveJobs.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Compare\Work-DbSchema.scmp" />

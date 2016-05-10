@@ -2,9 +2,15 @@
 
     Public Class RunnerResult
 
+        Public Property [RunStart] As DateTime
+        Public Property RunEnd As DateTime
+        Public Property RanSuccessfully As Boolean
         Public Property [Error] As Exception
-        Public Property CodeExecuted As Boolean
-        Public Property CodeFailed As Boolean
+
+        Public Sub New()
+            RunStart = DateTime.Now
+            RanSuccessfully = False
+        End Sub
 
     End Class
 

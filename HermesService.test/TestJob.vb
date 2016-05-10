@@ -75,7 +75,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
     <TestMethod()> Public Sub TestRunTheJob()
 
         Dim jobs As List(Of Model.Job) = Job.GetAll()
-        Dim j As Job = jobs(1)
+        Dim j As Job = jobs(0)
         Dim timenow As DateTime = DateTime.Now
         j.Run(timenow, True)
 

@@ -1,5 +1,6 @@
 ﻿CREATE TABLE [dbo].[Job] (
     [ID]            INT             IDENTITY (1, 1) NOT NULL,
+    [IsEnabled]     BIT             CONSTRAINT [DF_SystemTask_IsEnabled] DEFAULT ((0)) NULL,
     [SystemID]      INT             NULL,
     [RunOnce]       DATETIME        NULL,
     [RunTime]       VARCHAR (5)     NULL,
@@ -12,8 +13,10 @@
     [Sunday]        BIT             NULL,
     [RepeatMin]     INT             NULL,
     [RunDll]        VARCHAR (50)    NULL,
-    [IsEnabled]     BIT             CONSTRAINT [DF_SystemTask_IsEnabled] DEFAULT ((0)) NULL,
+    [RunBatch]      VARCHAR (50)    NULL,
     [RunParameters] VARBINARY (MAX) NULL,
     CONSTRAINT [PK_SystemTask] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
+
+
 

@@ -15,6 +15,8 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "HermesService.test", "Herme
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "HermesFramework", "\\vmware-host\Shared Folders\Desktop\Code\wapi\HermesFramework\HermesFramework.vbproj", "{0E7E3890-7EBB-4245-9C24-D566F4DA658E}"
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "SystemLibrary", "SystemService\SystemLibrary.vbproj", "{EB6481AF-8426-48DB-9256-8E1A4636F088}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{0E7E3890-7EBB-4245-9C24-D566F4DA658E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E7E3890-7EBB-4245-9C24-D566F4DA658E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E7E3890-7EBB-4245-9C24-D566F4DA658E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB6481AF-8426-48DB-9256-8E1A4636F088}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB6481AF-8426-48DB-9256-8E1A4636F088}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB6481AF-8426-48DB-9256-8E1A4636F088}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB6481AF-8426-48DB-9256-8E1A4636F088}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

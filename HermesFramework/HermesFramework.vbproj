@@ -76,9 +76,10 @@
     <Compile Include="Data\SchemaField.vb" />
     <Compile Include="Data\SchemaTable.vb" />
     <Compile Include="Data\Utils.vb" />
-    <Compile Include="Processor\AssemblyResult.vb" />
-    <Compile Include="Processor\BatchResult.vb" />
-    <Compile Include="Processor\IRunnerAssembly.vb" />
+    <Compile Include="Processor\BatJob.vb" />
+    <Compile Include="Processor\DllJob.vb" />
+    <Compile Include="Processor\IJob.vb" />
+    <Compile Include="Processor\Job.vb" />
     <Compile Include="Processor\Runner.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
