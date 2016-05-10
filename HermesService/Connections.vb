@@ -1,5 +1,3 @@
-
-Imports System.Configuration
 Imports HermesFramework.Data
 
 Public Class Connections

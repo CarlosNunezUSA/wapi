@@ -1,7 +1,7 @@
 ﻿-- =============================================
--- Author:		<Author,,Name>
--- Create date: <Create Date,,>
--- Description:	<Description,,>
+-- Author:		Carlos Nunez
+-- Create date: 5/10/2016
+-- Description:	Get Active Jobs
 -- =============================================
 CREATE PROCEDURE dbo.p_GET_ActiveJobs 
 AS

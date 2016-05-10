@@ -79,6 +79,7 @@
     <Compile Include="Processor\BatJob.vb" />
     <Compile Include="Processor\DllJob.vb" />
     <Compile Include="Processor\IJob.vb" />
+    <Compile Include="Processor\ITaskLibrary.vb" />
     <Compile Include="Processor\Job.vb" />
     <Compile Include="Processor\Runner.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -97,6 +98,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Processor\RunnerResult.vb" />
+    <Compile Include="Processor\Scheduler.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">

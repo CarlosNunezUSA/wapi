@@ -151,7 +151,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="\\vmware-host\Shared Folders\Desktop\Code\wapi\HermesFramework\HermesFramework.vbproj">
+    <ProjectReference Include="..\HermesFramework\HermesFramework.vbproj">
       <Project>{0e7e3890-7ebb-4245-9c24-d566f4da658e}</Project>
       <Name>HermesFramework</Name>
     </ProjectReference>

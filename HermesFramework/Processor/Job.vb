@@ -3,7 +3,7 @@
     Public MustInherit Class Job
         Implements IJob
 
-
+#Region "Properties"
         Public Property Id As Integer
         Public Property IsEnabled As Boolean
         Public Property RunOnce As Nullable(Of DateTime)
@@ -16,6 +16,9 @@
         Public Property Saturday As Boolean
         Public Property Sunday As Boolean
         Public Property RunParameters As String
+        Public Property WorkingFolder As String
+        Public Property RunAlways As Boolean
+#End Region
 
 
         Public MustOverride Function Run(timenow As DateTime) As RunnerResult Implements IJob.Run

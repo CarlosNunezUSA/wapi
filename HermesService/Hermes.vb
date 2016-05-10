@@ -1,4 +1,5 @@
 ﻿
+Imports System.Configuration
 Imports HermesFramework.Processor
 
 
@@ -36,7 +37,8 @@ Public Class Hermes
         Try
             Dim rn As New Runner
             rn.Connection = Connections.Dashboard()
-            rn.RunTask(timenow)
+            rn.ScheduleFolder = configurationmanager.AppSettings("ScheduleFolder")
+            rn.RunScheduledTasks(timenow)
         Catch ex As Exception
             Throw
         End Try

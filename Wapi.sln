@@ -13,9 +13,9 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DB", "DB\DB.sqlproj", "{33B
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "HermesService.test", "HermesService.test\HermesService.test.vbproj", "{FD2166C8-33B4-4FC9-AC48-55ABEB5864ED}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "HermesFramework", "\\vmware-host\Shared Folders\Desktop\Code\wapi\HermesFramework\HermesFramework.vbproj", "{0E7E3890-7EBB-4245-9C24-D566F4DA658E}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "HermesFramework", "HermesFramework\HermesFramework.vbproj", "{0E7E3890-7EBB-4245-9C24-D566F4DA658E}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "SystemLibrary", "SystemService\SystemLibrary.vbproj", "{EB6481AF-8426-48DB-9256-8E1A4636F088}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "SystemLibrary", "SystemLibrary\SystemLibrary.vbproj", "{EB6481AF-8426-48DB-9256-8E1A4636F088}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

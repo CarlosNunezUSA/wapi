@@ -99,7 +99,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="TestJob.vb" />
+    <Compile Include="TestFramework.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -122,6 +122,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\HermesFramework\HermesFramework.vbproj">
+      <Project>{0e7e3890-7ebb-4245-9c24-d566f4da658e}</Project>
+      <Name>HermesFramework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HermesService\HermesService.vbproj">
       <Project>{943ba4e8-c605-454b-af40-f56fca2d904f}</Project>
       <Name>HermesService</Name>
