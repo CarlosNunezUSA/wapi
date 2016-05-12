@@ -38,3 +38,4 @@ Wapi/bin/*
 *.log
 
 .typingsrc
+/DB/DB.dbmdl

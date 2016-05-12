@@ -16,8 +16,9 @@
         Public Property Saturday As Boolean
         Public Property Sunday As Boolean
         Public Property RunParameters As String
-        Public Property WorkingFolder As String
         Public Property RunAlways As Boolean
+        Public Property FileName As String
+
 #End Region
 
 

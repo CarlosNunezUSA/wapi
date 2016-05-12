@@ -32,11 +32,11 @@
         j.RunTime = "08:00"
         j.IsEnabled = False
         test.Add(j)
-       
+
         ' check the job is returned on runonce when date/time are set
         j = New DllJob
         j.Id = 4
-        j.Runonce = New Date(2016, 1, 1, 8, 0, 0)
+        j.RunOnce = New Date(2016, 1, 1, 8, 0, 0)
         j.IsEnabled = True
         test.Add(j)
 
@@ -46,42 +46,27 @@
         result = Scheduler.GetScheduledJobs(timenow, test)
 
         Assert.IsTrue(result.Count > 0, "the schedule should return 1+ jobs")
-        Assert.IsTrue((result.Find(Function(x) x.Id=1)) isnot nothing, "the schedule should return the job #1")
-        Assert.IsTrue((result.Find(Function(x) x.Id=2)) isnot nothing, "the schedule should return the job #2")
-        Assert.IsTrue((result.Find(Function(x) x.Id=3)) is nothing, "the schedule should not return the job #3. It is disabled")
-        Assert.IsTrue((result.Find(Function(x) x.Id=4)) isnot nothing, "the schedule should return the job #4")
+        Assert.IsTrue((result.Find(Function(x) x.Id = 1)) IsNot Nothing, "the schedule should return the job #1")
+        Assert.IsTrue((result.Find(Function(x) x.Id = 2)) IsNot Nothing, "the schedule should return the job #2")
+        Assert.IsTrue((result.Find(Function(x) x.Id = 3)) Is Nothing, "the schedule should not return the job #3. It is disabled")
+        Assert.IsTrue((result.Find(Function(x) x.Id = 4)) IsNot Nothing, "the schedule should return the job #4")
 
     End Sub
 
-        <TestMethod()>
+    <TestMethod()>
     Public Sub TestRunnerGetAllJobs()
 
-        Dim timenow As DateTime
-        Dim result As List(Of Job)
+        Dim r As New Runner
+        r.Connection = Connections.Dashboard
+        r.ScheduleFolder = "C:\TEMP\Hermes\schedule"
 
-        ' check the job is returned as scheduled when is set to RunAlways
-        Dim test As New List(Of Job)
+        Dim result As List(Of Job) = r.GetAllJobs()
 
-        Dim j1 As New  DllJob
-        j1.Id = 1
-        j1.RunAlways = True
-        j1.IsEnabled = True
-        test.Add(j1)
-
-        Dim j2 As new BatJob
-        j2.Id =2
-        j2.
-
-        ' this date is a Friday at 8:00am
-        timenow = New Date(2016, 1, 1, 8, 0, 0)
-
-        result = Scheduler.GetScheduledJobs(timenow, test)
-
-        Assert.IsTrue(result.Count > 0, "the schedule should return 1+ jobs")
-        Assert.IsTrue((result.Find(Function(x) x.Id=1)) isnot nothing, "the schedule should return the job #1")
-        Assert.IsTrue((result.Find(Function(x) x.Id=2)) isnot nothing, "the schedule should return the job #2")
-        Assert.IsTrue((result.Find(Function(x) x.Id=3)) is nothing, "the schedule should not return the job #3. It is disabled")
-        Assert.IsTrue((result.Find(Function(x) x.Id=4)) isnot nothing, "the schedule should return the job #4")
+        'Assert.IsTrue(result.Count > 0, "the schedule should return 1+ jobs")
+        'Assert.IsTrue((result.Find(Function(x) x.Id=1)) isnot nothing, "the schedule should return the job #1")
+        'Assert.IsTrue((result.Find(Function(x) x.Id=2)) isnot nothing, "the schedule should return the job #2")
+        'Assert.IsTrue((result.Find(Function(x) x.Id=3)) is nothing, "the schedule should not return the job #3. It is disabled")
+        'Assert.IsTrue((result.Find(Function(x) x.Id=4)) isnot nothing, "the schedule should return the job #4")
 
     End Sub
 

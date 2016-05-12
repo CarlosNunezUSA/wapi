@@ -4,8 +4,6 @@ Imports System.IO
 Namespace Processor
     Public Class BatJob
         Inherits Job
-              
-        Public Property BatchFileName As String
 
         Public Function GetAll(scheduleFolder As string) As List(Of Job)
             return GetJobsFromDisk(scheduleFolder)
@@ -13,8 +11,8 @@ Namespace Processor
 
         Public Overrides Function Run(timenow As DateTime) As RunnerResult
 
-            If Not Directory.Exists(WorkingFolder) Then
-                Throw New Exception("Batch working folder not specified")
+            If Not file.Exists(me.FileName) Then
+                Throw New Exception("Batch File not found or not specified.")
             End If
 
             Dim result As New RunnerResult
@@ -22,13 +20,9 @@ Namespace Processor
 
             Try
 
-                Dim jobFile As String = Path.Combine(WorkingFolder, BatchFileName)
-
-                If File.Exists(jobFile) Then
-
                     Dim proc = New Process()
                     proc.StartInfo.WorkingDirectory = workingFolder
-                    proc.StartInfo.FileName = BatchFileName
+                    proc.StartInfo.FileName = FileName
                     proc.StartInfo.CreateNoWindow = True
                     proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden
                     proc.StartInfo.Arguments = me.RunParameters
@@ -39,10 +33,6 @@ Namespace Processor
                     Else
                         result.RanSuccessfully = False
                     End If
-
-                Else
-                    Throw New Exception("The specified BATCH file doesn't exist!")
-                End If
 
             Catch ex As Exception
                 result.Error = ex
@@ -60,7 +50,7 @@ Namespace Processor
             Dim result As New List(Of Job)
 
             Dim di As New DirectoryInfo(schedulefolder)
-            Dim files = di.GetFiles("*.sch", SearchOption.AllDirectories)
+            Dim files = di.GetFiles("*.hrm", SearchOption.AllDirectories)
 
             For Each f As FileInfo In files
                 result.Add(GetJobFromFile(f))
@@ -121,6 +111,12 @@ Namespace Processor
                     End If
                     If InStr(ln, "@-Sunday") Then
                         j.Sunday = Boolean.Parse(value)
+                    End If
+                    If InStr(ln, "@-RunAlways") Then
+                        j.Sunday = Boolean.Parse(value)
+                    End If
+                    If InStr(ln, "@-FileName") Then
+                        j.FileName = iif(string.IsNullOrWhiteSpace(value), "",value.Trim())
                     End If
                     If InStr(ln, "RunParameters") Then
                         value = value.Replace("@@-Date", String.Format("{1}{0}{1}", DateTime.Now, Chr(34)))

@@ -11,6 +11,7 @@ Namespace Processor
 
         Public Property Connection As Nullable(Of DatabaseFactory)
         Public Property ScheduleFolder As String
+        Public Property WorkingFolder As String
 
         Public Sub RunScheduledTasks(timenow As Date)
 

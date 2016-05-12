@@ -1,36 +1,35 @@
 ﻿
 Imports System.Configuration
+Imports System.Timers
 Imports HermesFramework.Processor
 
 
+
+
 Public Class Hermes
-
-
     Private Const RUN_INTERVAL As Integer = 60000
-    Private _maintimer As System.Timers.Timer
-
+    Private _maintimer As Timer
 
     '
     ' Clock Started
     '
-    Protected Overrides Sub OnStart(ByVal args() As String)
+    Protected Overrides Sub OnStart(args() As String)
 
         Try
-            _maintimer = New System.Timers.Timer(RUN_INTERVAL)
+            _maintimer = New Timer(RUN_INTERVAL)
             AddHandler _maintimer.Elapsed, AddressOf Me.OnTimerTickEvent
             _maintimer.Enabled = True
             _maintimer.Start()
         Catch ex As Exception
             Throw
         End Try
-
     End Sub
 
 
     '
     ' Clock tick event
     '
-    Public Sub OnTimerTickEvent(source As Object, e As System.Timers.ElapsedEventArgs)
+    Public Sub OnTimerTickEvent(source As Object, e As ElapsedEventArgs)
 
         Dim timenow As DateTime = DateTime.Now
 
@@ -42,7 +41,6 @@ Public Class Hermes
         Catch ex As Exception
             Throw
         End Try
-
     End Sub
 
 
@@ -50,12 +48,8 @@ Public Class Hermes
 
         Me._maintimer.Stop()
         Me._maintimer.Enabled = False
-
     End Sub
 
-
 End Class
-
-
 
 
