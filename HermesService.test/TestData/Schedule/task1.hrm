@@ -1,0 +1,17 @@
+@-IsEnabled =  	True
+@-RunOnce =    	@@-Today 10:15:00 PM 	
+@-RunTime =    	22:00
+@-Monday =     	true
+@-Tuesday =    	true
+@-Wednesday =  	true
+@-Thursday =   	true
+@-Friday =     	true
+@-Saturday =   	true
+@-Sunday =     	true
+@-FileName =    Test.bat
+@-RunParameters =  @@-Date  @@-User  @@-File  @@-Today 10:15:00 PM
+
+
+
+
+  

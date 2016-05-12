@@ -18,21 +18,27 @@ Namespace Processor
             ' get all jobs to run 
             ' determine which ones to run
             ' run all in parallel
+            Try
 
-            Dim alljobs As List(Of Job) = GetAllJobs()
+                Dim alljobs As List(Of Job) = GetAllJobs()
 
-            Dim scheduledjobs As List(Of Job) = Scheduler.GetScheduledJobs(timenow, alljobs)
+                Dim scheduledjobs As List(Of Job) = Scheduler.GetScheduledJobs(timenow, alljobs)
 
-            If scheduledjobs.Count > 0 Then
+                If scheduledjobs.Count > 0 Then
 
-                Parallel.ForEach(Of Job)(scheduledjobs, Sub(scheduledjob)
-                                                            Try
-                                                                Dim result As RunnerResult = scheduledjob.Run(timenow, WorkingFolder)
-                                                            Catch ex As Exception
-                                                                'todo: log the issue
-                                                            End Try
-                                                        End Sub)
-            End If
+                    Parallel.ForEach(Of Job)(scheduledjobs, Sub(scheduledjob)
+                                                                Try
+                                                                    Dim result As RunnerResult = scheduledjob.Run(timenow, WorkingFolder)
+                                                                Catch ex As Exception
+                                                                    'todo: log the issue
+                                                                End Try
+                                                            End Sub)
+                End If
+
+
+            Catch ex As Exception
+                Debug.WriteLine(ex.Message)
+            End Try
 
         End Sub
 

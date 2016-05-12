@@ -5,13 +5,15 @@ Namespace Processor
     Public Class BatJob
         Inherits Job
 
-        Public Function GetAll(scheduleFolder As string) As List(Of Job)
-            return GetJobsFromDisk(scheduleFolder)
+        Public Function GetAll(scheduleFolder As String) As List(Of Job)
+            Return GetJobsFromDisk(scheduleFolder)
         End Function
 
         Public Overrides Function Run(timenow As DateTime, workingFolder As String) As RunnerResult
 
-            If Not File.Exists(Me.FileName) Then
+            Dim runfile As String = Path.Combine(workingFolder, FileName)
+
+            If Not File.Exists(runfile) Then
                 Throw New Exception("Batch File not found or not specified.")
             End If
 
@@ -45,11 +47,11 @@ Namespace Processor
 
         End Function
 
-        Private  Function GetJobsFromDisk(scheduleFolder As string) As List(Of Job)
+        Private Function GetJobsFromDisk(scheduleFolder As String) As List(Of Job)
 
             Dim result As New List(Of Job)
 
-            Dim di As New DirectoryInfo(schedulefolder)
+            Dim di As New DirectoryInfo(scheduleFolder)
             Dim files = di.GetFiles("*.hrm", SearchOption.AllDirectories)
 
             For Each f As FileInfo In files
@@ -64,7 +66,7 @@ Namespace Processor
 
             Dim jobLines As String() = File.ReadAllLines(f.FullName)
 
-            Dim j As New batJob
+            Dim j As New BatJob
 
             Dim aLine As String()
 
@@ -83,6 +85,7 @@ Namespace Processor
                     End If
                     If InStr(ln, "@-RunOnce") Then
                         Try
+                            j.RunOnce = ReplaceParameters(value, j)
                             j.RunOnce = DateTime.Parse(value)
                         Catch ex As Exception
                             j.RunOnce = Nothing
@@ -116,13 +119,10 @@ Namespace Processor
                         j.Sunday = Boolean.Parse(value)
                     End If
                     If InStr(ln, "@-FileName") Then
-                        j.FileName = iif(string.IsNullOrWhiteSpace(value), "",value.Trim())
+                        j.FileName = IIf(String.IsNullOrWhiteSpace(value), "", value.Trim())
                     End If
                     If InStr(ln, "RunParameters") Then
-                        value = value.Replace("@@-Date", String.Format("{1}{0}{1}", DateTime.Now, Chr(34)))
-                        value = value.Replace("@@-File", String.Format("{1}{0}{1}", f, Chr(34)))
-                        value = value.Replace("@@-User", System.Security.Principal.WindowsIdentity.GetCurrent().Name)
-                        j.RunParameters = value
+                        j.RunParameters = ReplaceParameters(value, j, f.Name)
                     End If
 
                 End If
@@ -137,6 +137,17 @@ Namespace Processor
 
         End Function
 
+
+        Private Function ReplaceParameters(value As String, j As BatJob, optional file As string = "") As String
+            value = value.Replace("@@-Date", String.Format("{1}{0}{1}", DateTime.Now, Chr(34)))
+            value = value.Replace("@@-File", String.Format("{1}{0}{1}", file, Chr(34)))
+            value = value.Replace("@@-User", System.Security.Principal.WindowsIdentity.GetCurrent().Name)
+            value = value.Replace("@@-Today", DateTime.Now.Date)
+            value = value.Replace("@@-RunTime", j.RunTime)
+            value = value.Replace("@@-Now", DateTime.Now)
+            Return value
+        End Function
+
     End Class
 
-End NameSpace
+End Namespace
