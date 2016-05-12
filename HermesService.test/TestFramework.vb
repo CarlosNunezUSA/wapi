@@ -70,5 +70,25 @@
 
     End Sub
 
+    <TestMethod()>
+    Public Sub TestRunnerRunScheduledTasks()
+
+        Dim r As New Runner
+        r.Connection = Connections.Dashboard
+        r.ScheduleFolder = "C:\TEMP\Hermes\schedule"
+        r.WorkingFolder = "C:\TEMP\Hermes\jobs"
+
+        Dim timenow As DateTime = New DateTime(2016, 1, 1, 22, 0, 0)
+
+
+        r.RunScheduledTasks(timenow)
+
+        'Assert.IsTrue(result.Count > 0, "the schedule should return 1+ jobs")
+        'Assert.IsTrue((result.Find(Function(x) x.Id=1)) isnot nothing, "the schedule should return the job #1")
+        'Assert.IsTrue((result.Find(Function(x) x.Id=2)) isnot nothing, "the schedule should return the job #2")
+        'Assert.IsTrue((result.Find(Function(x) x.Id=3)) is nothing, "the schedule should not return the job #3. It is disabled")
+        'Assert.IsTrue((result.Find(Function(x) x.Id=4)) isnot nothing, "the schedule should return the job #4")
+
+    End Sub
 
 End Class

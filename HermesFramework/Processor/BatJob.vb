@@ -9,9 +9,9 @@ Namespace Processor
             return GetJobsFromDisk(scheduleFolder)
         End Function
 
-        Public Overrides Function Run(timenow As DateTime) As RunnerResult
+        Public Overrides Function Run(timenow As DateTime, workingFolder As String) As RunnerResult
 
-            If Not file.Exists(me.FileName) Then
+            If Not File.Exists(Me.FileName) Then
                 Throw New Exception("Batch File not found or not specified.")
             End If
 
@@ -20,19 +20,19 @@ Namespace Processor
 
             Try
 
-                    Dim proc = New Process()
-                    proc.StartInfo.WorkingDirectory = workingFolder
-                    proc.StartInfo.FileName = FileName
-                    proc.StartInfo.CreateNoWindow = True
-                    proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden
-                    proc.StartInfo.Arguments = me.RunParameters
-                    proc.Start()
-                    proc.WaitForExit()
-                    If proc.ExitCode = 0 Then
-                        result.RanSuccessfully = True
-                    Else
-                        result.RanSuccessfully = False
-                    End If
+                Dim proc = New Process()
+                proc.StartInfo.WorkingDirectory = workingFolder
+                proc.StartInfo.FileName = Me.FileName
+                proc.StartInfo.CreateNoWindow = True
+                proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden
+                proc.StartInfo.Arguments = Me.RunParameters
+                proc.Start()
+                proc.WaitForExit()
+                If proc.ExitCode = 0 Then
+                    result.RanSuccessfully = True
+                Else
+                    result.RanSuccessfully = False
+                End If
 
             Catch ex As Exception
                 result.Error = ex
@@ -72,7 +72,7 @@ Namespace Processor
 
             For Each ln As String In jobLines
 
-                aLine = ln.Split(":")
+                aLine = ln.Split("=")
 
                 If aLine IsNot Nothing AndAlso aLine.Count >= 2 Then
 

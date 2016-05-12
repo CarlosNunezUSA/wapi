@@ -22,7 +22,7 @@
 #End Region
 
 
-        Public MustOverride Function Run(timenow As DateTime) As RunnerResult Implements IJob.Run
+        Public MustOverride Function Run(timenow As DateTime, workingFolder As String) As RunnerResult Implements IJob.Run
 
     End Class
 

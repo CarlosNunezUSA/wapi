@@ -27,7 +27,7 @@ Namespace Processor
 
                 Parallel.ForEach(Of Job)(scheduledjobs, Sub(scheduledjob)
                                                             Try
-                                                                Dim result As RunnerResult = scheduledjob.Run(timenow)
+                                                                Dim result As RunnerResult = scheduledjob.Run(timenow, WorkingFolder)
                                                             Catch ex As Exception
                                                                 'todo: log the issue
                                                             End Try
@@ -47,6 +47,7 @@ Namespace Processor
                 End If
             Catch ex As Exception
                 'todo: log this error
+                Throw
             End Try
 
             Try
@@ -55,6 +56,7 @@ Namespace Processor
                 End If
             Catch ex As Exception
                 'todo: log this error
+                Throw
             End Try
 
             dlljobs.AddRange(batjobs)

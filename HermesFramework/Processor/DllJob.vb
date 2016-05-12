@@ -31,7 +31,7 @@ Namespace Processor
 
         End Function
 
-        Public Overrides Function Run(timenow As DateTime) As RunnerResult
+        Public Overrides Function Run(timenow As DateTime, workingFolder As String) As RunnerResult
 
             Dim result As New RunnerResult
 
@@ -39,7 +39,7 @@ Namespace Processor
                 '
                 '  Load assembly from file path. Specify that we will be using 
                 '
-                Dim asm As Assembly = Assembly.LoadFrom(Path.Combine(WorkingFolder, DllName))
+                Dim asm As Assembly = Assembly.LoadFrom(Path.Combine(workingFolder, DllName))
                 Dim asmtype As Type = asm.GetType(ClassName)
 
                 '

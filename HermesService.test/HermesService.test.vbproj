@@ -122,6 +122,7 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+    <None Include="TestData\task1.hrm" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HermesFramework\HermesFramework.vbproj">
