@@ -40,4 +40,4 @@ Wapi/bin/*
 .typingsrc
 /DB/DB.dbmdl
 
-.vs/Wapi/v14/.suo
+.vs/**
