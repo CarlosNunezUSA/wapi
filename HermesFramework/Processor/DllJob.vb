@@ -1,20 +1,33 @@
 
+'========================================================================================
+' Copyright (c) 2016 Carlos I. Nunez. All rights reserved.
+'========================================================================================
+'
+'	Project File:	HermesFramework / Processor.DllJob.vb
+'	Created on:		5/12/2016 @ 10:40 PM
+'	Modified on:	5/12/2016 @ 11:04 PM 
+'	Author:			Carlos Nunez 
+' 
+'========================================================================================
+
 Imports System.IO
 Imports System.Reflection
 Imports HermesFramework.Data
+
 
 Namespace Processor
     Public Class DllJob
         Inherits Job
 
         Public Property SystemId As Integer
-        Public Property DllName As String
-        Public Property ClassName As String
 
+        Public Property DllName As String
+
+        Public Property ClassName As String
 
         Public Function GetAll(connection As DatabaseFactory) As List(Of Job)
 
-            Dim result As new List(Of Job)
+            Dim result As New List(Of Job)
 
             ' get from database
             Dim dt As DataTable = DataFacade.GetDataTableSP(connection, "p_GET_ActiveJobs", Nothing)
@@ -28,7 +41,6 @@ Namespace Processor
             End If
 
             Return result
-
         End Function
 
         Public Overrides Function Run(timenow As DateTime, workingFolder As String) As RunnerResult
@@ -87,31 +99,27 @@ Namespace Processor
             End Try
 
             Return result
-
         End Function
 
         Private Function RowToObject(r As DataRow) As DllJob
 
             Dim result As New DllJob
-            result.Id = r.Parse(Of Integer)("ID", -1)
-            result.SystemId = r.Parse(Of Integer)("SystemID", -1)
-            result.RunOnce = r.Parse(Of Nullable(Of DateTime))("RunOnce", Nothing)
-            result.RunTime = r.Parse(Of String)("RunTime")
-            result.Monday = r.Parse(Of Boolean)("Monday", False)
-            result.Tuesday = r.Parse(Of Boolean)("Tuesday", False)
-            result.Wednesday = r.Parse(Of Boolean)("Wednesday", False)
-            result.Thursday = r.Parse(Of Boolean)("Thursday", False)
-            result.Friday = r.Parse(Of Boolean)("Friday", False)
-            result.Saturday = r.Parse(Of Boolean)("Saturday", False)
-            result.Sunday = r.Parse(Of Boolean)("Sunday", False)
-            result.DllName = r.Parse(Of String)("DllName")
-            result.ClassName = r.Parse(Of String)("ClassName")
-            result.IsEnabled = r.Parse(Of Boolean)("IsEnabled", False)
-            result.RunParameters = r.Parse(Of String)("RunParameters")
+            result.Id = r.Parse (Of Integer)("ID", - 1)
+            result.SystemId = r.Parse (Of Integer)("SystemID", - 1)
+            result.RunOnce = r.Parse (Of Nullable(Of DateTime))("RunOnce", Nothing)
+            result.RunTime = r.Parse (Of String)("RunTime")
+            result.Monday = r.Parse (Of Boolean)("Monday", False)
+            result.Tuesday = r.Parse (Of Boolean)("Tuesday", False)
+            result.Wednesday = r.Parse (Of Boolean)("Wednesday", False)
+            result.Thursday = r.Parse (Of Boolean)("Thursday", False)
+            result.Friday = r.Parse (Of Boolean)("Friday", False)
+            result.Saturday = r.Parse (Of Boolean)("Saturday", False)
+            result.Sunday = r.Parse (Of Boolean)("Sunday", False)
+            result.DllName = r.Parse (Of String)("DllName")
+            result.ClassName = r.Parse (Of String)("ClassName")
+            result.IsEnabled = r.Parse (Of Boolean)("IsEnabled", False)
+            result.RunParameters = r.Parse (Of String)("RunParameters")
             Return result
-
         End Function
-
     End Class
-
 End Namespace

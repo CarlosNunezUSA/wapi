@@ -1,5 +1,18 @@
-Imports System.Configuration
+
+'========================================================================================
+' Copyright (c) 2016 Carlos I. Nunez. All rights reserved.
+'========================================================================================
+'
+'	Project File:	HermesFramework / Processor.BatJob.vb
+'	Created on:		5/12/2016 @ 11:03 PM
+'	Modified on:	5/12/2016 @ 11:04 PM 
+'	Author:			Carlos Nunez 
+' 
+'========================================================================================
+
 Imports System.IO
+Imports System.Security.Principal
+
 
 Namespace Processor
     Public Class BatJob
@@ -10,6 +23,11 @@ Namespace Processor
         End Function
 
         Public Overrides Function Run(timenow As DateTime, workingFolder As String) As RunnerResult
+
+            If String.IsNullOrWhiteSpace(workingFolder) Then
+                Throw New Exception("Missing working Folder")
+            End If
+
 
             Dim runfile As String = Path.Combine(workingFolder, FileName)
 
@@ -44,7 +62,6 @@ Namespace Processor
             End Try
 
             Return result
-
         End Function
 
         Private Function GetJobsFromDisk(scheduleFolder As String) As List(Of Job)
@@ -59,7 +76,6 @@ Namespace Processor
             Next
 
             Return result
-
         End Function
 
         Private Function GetJobFromFile(f As FileInfo) As Job
@@ -70,7 +86,7 @@ Namespace Processor
 
             Dim aLine As String()
 
-            Dim value As String = ""
+            Dim value = ""
 
             For Each ln As String In jobLines
 
@@ -85,7 +101,7 @@ Namespace Processor
                     End If
                     If InStr(ln, "@-RunOnce") Then
                         Try
-                            j.RunOnce = ReplaceParameters(value, j)
+                            value = ReplaceParameters(value, j)
                             j.RunOnce = DateTime.Parse(value)
                         Catch ex As Exception
                             j.RunOnce = Nothing
@@ -134,20 +150,16 @@ Namespace Processor
             'End If
 
             Return j
-
         End Function
 
-
-        Private Function ReplaceParameters(value As String, j As BatJob, optional file As string = "") As String
+        Private Function ReplaceParameters(value As String, j As BatJob, Optional file As String = "") As String
             value = value.Replace("@@-Date", String.Format("{1}{0}{1}", DateTime.Now, Chr(34)))
             value = value.Replace("@@-File", String.Format("{1}{0}{1}", file, Chr(34)))
-            value = value.Replace("@@-User", System.Security.Principal.WindowsIdentity.GetCurrent().Name)
+            value = value.Replace("@@-User", WindowsIdentity.GetCurrent().Name)
             value = value.Replace("@@-Today", DateTime.Now.Date)
             value = value.Replace("@@-RunTime", j.RunTime)
             value = value.Replace("@@-Now", DateTime.Now)
             Return value
         End Function
-
     End Class
-
 End Namespace

@@ -1,0 +1,34 @@
+﻿extensions: designer.cs generated.cs
+extensions: .cs .cpp .h
+// Copyright (c) 2016 Carlos I. Nunez. All rights reserved.
+extensions: .aspx .ascx
+<%-- 
+'========================================================
+'
+' Copyright (c) 2016 Carlos I. Nunez. All rights reserved.
+' 
+'========================================================
+'
+--%>
+extensions: .vb
+ 
+'========================================================================================
+' Copyright (c) 2016 Carlos I. Nunez. All rights reserved.
+'========================================================================================
+'
+'	Project File:	%Project% / %Namespace%.%FileName%
+'	Created on:		%CreationMonth%/%CreationDay%/%CreationYear% @ %CreationTime%
+'	Modified on:	%CurrentMonth%/%CurrentDay%/%CurrentYear% @ %CurrentTime% 
+'	Author:			%UserDisplayName% 
+' 
+'========================================================================================
+ 
+extensions:  .xml .config .xsd
+<!--
+'========================================================
+'
+' Copyright (c) 2016 Carlos I. Nunez. All rights reserved.
+' 
+'========================================================
+'
+-->

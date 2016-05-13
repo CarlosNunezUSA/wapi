@@ -1,16 +1,24 @@
 ﻿
-Imports System.Configuration
-Imports System.IO
-Imports System.Reflection
+'========================================================================================
+' Copyright (c) 2016 Carlos I. Nunez. All rights reserved.
+'========================================================================================
+'
+'	Project File:	HermesFramework / Processor.Runner.vb
+'	Created on:		5/12/2016 @ 10:42 PM
+'	Modified on:	5/12/2016 @ 11:05 PM 
+'	Author:			Carlos Nunez 
+' 
+'========================================================================================
+
 Imports HermesFramework.Data
 
 
 Namespace Processor
-
     Public Class Runner
-
         Public Property Connection As Nullable(Of DatabaseFactory)
+
         Public Property ScheduleFolder As String
+
         Public Property WorkingFolder As String
 
         Public Sub RunScheduledTasks(timenow As Date)
@@ -35,11 +43,9 @@ Namespace Processor
                                                             End Sub)
                 End If
 
-
             Catch ex As Exception
                 Debug.WriteLine(ex.Message)
             End Try
-
         End Sub
 
         Public Function GetAllJobs() As List(Of Job)
@@ -53,7 +59,7 @@ Namespace Processor
                 End If
             Catch ex As Exception
                 'todo: log this error
-                Throw
+                'Throw
             End Try
 
             Try
@@ -62,15 +68,12 @@ Namespace Processor
                 End If
             Catch ex As Exception
                 'todo: log this error
-                Throw
+                'Throw
             End Try
 
             dlljobs.AddRange(batjobs)
 
             Return dlljobs
-
         End Function
-
     End Class
-
 End Namespace

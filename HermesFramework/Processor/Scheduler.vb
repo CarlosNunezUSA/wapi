@@ -1,4 +1,15 @@
 ﻿
+'========================================================================================
+' Copyright (c) 2016 Carlos I. Nunez. All rights reserved.
+'========================================================================================
+'
+'	Project File:	HermesFramework / Processor.Scheduler.vb
+'	Created on:		5/12/2016 @ 10:42 PM
+'	Modified on:	5/12/2016 @ 11:05 PM 
+'	Author:			Carlos Nunez 
+' 
+'========================================================================================
+
 Namespace Processor
     Public Class Scheduler
         Public Shared Function GetScheduledJobs(timenow As DateTime, jobs As List(Of Job)) As List(Of Job)
@@ -7,11 +18,11 @@ Namespace Processor
 
             For Each j As Job In jobs
 
-                If ( Not j.IsEnabled ) Then
+                If (Not j.IsEnabled) Then
                     Continue For
                 End If
 
-                If ( j.RunAlways ) OrElse String.Format("{0:MM/dd/yy-hh:mm-tt}", j.RunOnce) = String.Format("{0:MM/dd/yy-hh:mm-tt}", timenow) Then
+                If (j.RunAlways) OrElse String.Format("{0:MM/dd/yy-hh:mm-tt}", j.RunOnce) = String.Format("{0:MM/dd/yy-hh:mm-tt}", timenow) Then
 
                     ' run this right now
                     result.Add(j)

@@ -1,22 +1,20 @@
-﻿' ' |
-' ' |============================================================================================================
-' ' |  Project:           DAL
-' ' |------------------------------------------------------------------------------------------------------------
-' ' |  
-' ' |  Last modified by:  Carlos I. Nunez (carlos@compexc.com)
-' ' |
-' ' |  On date:           9/27/2014
-' ' |
-' ' |------------------------------------------------------------------------------------------------------------
-' ' |  (c) 2014 Carlos I. Nunez, Miami - FL. All rights reserved.      
-' ' |============================================================================================================
-' ' |
+﻿
+'========================================================================================
+' Copyright (c) 2016 Carlos I. Nunez. All rights reserved.
+'========================================================================================
+'
+'	Project File:	HermesFramework / Data.DataFacade.vb
+'	Created on:		5/12/2016 @ 10:45 PM
+'	Modified on:	5/12/2016 @ 11:06 PM 
+'	Author:			Carlos Nunez 
+' 
+'========================================================================================
+
 Imports System.Data.Common
 
+
 Namespace Data
-
     Public Class DataFacade
-
         Public Shared Function GetDataTableSP(factory As DatabaseFactory, stored_procedure As String, params As List(Of DbParameter)) As DataTable
 
             Using connection As DbConnection = factory.Factory.CreateConnection()
@@ -45,7 +43,6 @@ Namespace Data
             End Using
 
             Return Nothing
-
         End Function
 
         Public Shared Function GetDataTable(factory As DatabaseFactory, query As String) As DataTable
@@ -72,7 +69,6 @@ Namespace Data
             End Using
 
             Return Nothing
-
         End Function
 
         Private Shared Function GetSchemaFields(SchemaTable As DataTable) As List(Of SchemaField)
@@ -109,7 +105,7 @@ Namespace Data
                             Case "BaseTableName"
                                 qf.BaseTableName = SchemaTable.Rows(i).Item(j)
                             Case "DataType"
-                                qf.DataType = CType(SchemaTable.Rows(i).Item(j), System.Type).FullName
+                                qf.DataType = CType(SchemaTable.Rows(i).Item(j), Type).FullName
                             Case "AllowDBNull"
                                 qf.AllowDBNull = SchemaTable.Rows(i).Item(j)
                             Case "ProviderType"
@@ -125,7 +121,7 @@ Namespace Data
                             Case "IsReadOnly"
                                 qf.IsReadOnly = SchemaTable.Rows(i).Item(j)
                             Case "ProviderSpecificDataType"
-                                qf.ProviderSpecificDataType = CType(SchemaTable.Rows(i).Item(j), System.Type).FullName
+                                qf.ProviderSpecificDataType = CType(SchemaTable.Rows(i).Item(j), Type).FullName
                             Case "DataTypeName"
                                 qf.DataTypeName = SchemaTable.Rows(i).Item(j)
                             Case "UdtAssemblyQualifiedName"
@@ -143,7 +139,6 @@ Namespace Data
             Next
 
             Return result
-
         End Function
 
         Public Shared Function ExecuteSP(factory As DatabaseFactory, stored_procedure As String, params As List(Of DbParameter)) As Integer
@@ -168,7 +163,6 @@ Namespace Data
             End Using
 
             Return -1
-
         End Function
 
         Public Shared Function ExecuteScalarSP(factory As DatabaseFactory, stored_procedure As String, params As List(Of DbParameter), output_param_name As String) As Object
@@ -196,7 +190,6 @@ Namespace Data
             End Using
 
             Return -1
-
         End Function
 
         Public Shared Function Execute(factory As DatabaseFactory, query As String) As Integer
@@ -215,11 +208,9 @@ Namespace Data
             End Using
 
             Return -1
-
         End Function
 
         Public Shared Function GetSchemaDatatables(factory As DatabaseFactory) As List(Of SchemaTable)
-
 
             Dim result As New List(Of SchemaTable)
             Dim st As SchemaTable
@@ -267,9 +258,6 @@ Namespace Data
             End Using
 
             Return result
-
         End Function
-
     End Class
-
 End Namespace

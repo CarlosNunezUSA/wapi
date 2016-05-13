@@ -1,35 +1,34 @@
-' ' |
-' ' |============================================================================================================
-' ' |  Project:           DAL
-' ' |------------------------------------------------------------------------------------------------------------
-' ' |  
-' ' |  Last modified by:  Carlos I. Nunez (carlos@compexc.com)
-' ' |
-' ' |  On date:           9/27/2014
-' ' |
-' ' |------------------------------------------------------------------------------------------------------------
-' ' |  (c) 2014 Carlos I. Nunez, Miami - FL. All rights reserved.      
-' ' |============================================================================================================
-' ' |
+
+'========================================================================================
+' Copyright (c) 2016 Carlos I. Nunez. All rights reserved.
+'========================================================================================
+'
+'	Project File:	HermesFramework / Data.DatabaseFactory.vb
+'	Created on:		5/12/2016 @ 10:43 PM
+'	Modified on:	5/12/2016 @ 11:06 PM 
+'	Author:			Carlos Nunez 
+' 
+'========================================================================================
+
+Imports System.Configuration
+Imports System.Data.Common
+
+
 Namespace Data
-
     Public Structure DatabaseFactory
+        Public Property Factory As DbProviderFactory
 
-        Public Property Factory As System.Data.Common.DbProviderFactory
         Public Property ConnectionString As String
 
-        Public Sub New(settings As System.Configuration.ConnectionStringSettings)
+        Public Sub New(settings As ConnectionStringSettings)
             Try
 
                 Me.ConnectionString = settings.ConnectionString
-                Me.Factory = System.Data.Common.DbProviderFactories.GetFactory(settings.ProviderName)
+                Me.Factory = DbProviderFactories.GetFactory(settings.ProviderName)
 
             Catch ex As Exception
                 Throw
             End Try
-
         End Sub
-
     End Structure
-
 End Namespace

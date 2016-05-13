@@ -1,9 +1,18 @@
 ﻿
+'========================================================================================
+' Copyright (c) 2016 Carlos I. Nunez. All rights reserved.
+'========================================================================================
+'
+'	Project File:	HermesService / Hermes.vb
+'	Created on:		5/12/2016 @ 11:07 PM
+'	Modified on:	5/12/2016 @ 11:08 PM 
+'	Author:			Carlos Nunez 
+' 
+'========================================================================================
+
 Imports System.Configuration
 Imports System.Timers
 Imports HermesFramework.Processor
-
-
 
 
 Public Class Hermes
@@ -25,7 +34,6 @@ Public Class Hermes
         End Try
     End Sub
 
-
     '
     ' Clock tick event
     '
@@ -36,20 +44,18 @@ Public Class Hermes
         Try
             Dim rn As New Runner
             rn.Connection = Connections.Dashboard()
-            rn.ScheduleFolder = configurationmanager.AppSettings("ScheduleFolder")
+            rn.ScheduleFolder = ConfigurationManager.AppSettings("ScheduleFolder")
+            rn.WorkingFolder = ConfigurationManager.AppSettings("WorkingFolder")
             rn.RunScheduledTasks(timenow)
         Catch ex As Exception
             Throw
         End Try
     End Sub
 
-
     Protected Overrides Sub OnStop()
 
         Me._maintimer.Stop()
         Me._maintimer.Enabled = False
     End Sub
-
 End Class
-
 
